@@ -3,7 +3,7 @@ const studentRecordModel = require("../models/studentModel");
 
 const studentDetailsController = async(req,res)=>{
 
-//   console.log(req.body);
+  console.log(req.body);
  
    try {
 
@@ -11,15 +11,33 @@ const studentDetailsController = async(req,res)=>{
         fullName:req.body.values.name,
         nameWithInitials:req.body.values.nameWithInitials,       
         email:req.body.values.email,
-        // address:values.address,
+
+        address:req.body.address,
+
         mobileNumber:req.body.values.mobileNumber,
         whatsAppNumber:req.body.values.whatsAppNumber,
         birthDay:req.body.values.birthDay,
         school:req.body.values.school,
+
         cambrige:req.body.cambrige,
         elocution:req.body.elocution,
-        general:req.body.general
-    })
+        general:req.body.general,
+
+        mothersMobileNumber:req.body.mothersMobileNumber,
+        fathersMobileNumber:req.body.fathersMobileNumber,
+
+        grade:req.body.grade,
+
+        fartherName:req.body.fartherName,
+        motherName:req.body.motherName,
+
+        fartherOccupation:req.body.fartherOccupation,
+        motherOccupation:req.body.motherOccupation,
+
+        fartherEmail:req.body.fartherEmail,
+        motherEmail:req.body.motherEmail,
+   
+      })
 
     await data.save();
 
@@ -39,3 +57,17 @@ const studentDetailsController = async(req,res)=>{
 }
 
 module.exports = {studentDetailsController};
+
+
+
+
+
+// const [mothersMobileNumber, setMothersMobileNumber] = useState("");
+//   const [fathersMobileNumber, setFathersMobileNumber] = useState("");
+//   const [grade,setGrade] = useState("")
+//   const [fartherName,setFartherName] = useState("")
+//   const [motherName,setMotherName] = useState("")
+//   const [fartherOccupation,setFartherOccupation] = useState("")
+//   const [motherOccupation,setMotherOccupation] = useState("")
+//   const [fartherEmail,setFartherEmail] = useState("")
+//   const [motherEmail,setMotherEmail] = useState("")
