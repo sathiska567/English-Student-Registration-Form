@@ -3,7 +3,7 @@ const studentRecordModel = require("../models/studentModel");
 
 const studentDetailsController = async(req,res)=>{
 
-  console.log(req.body);
+//   console.log(req.body);
  
    try {
 

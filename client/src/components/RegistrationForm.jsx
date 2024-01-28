@@ -19,17 +19,17 @@ const RegistrationForm = () => {
 
   /*------------for submit start-------------------------------*/
   const onFinish = async(values) => {
-    console.log("Success:", values);
-    console.log(cambrige,elocution,general);
+    // console.log("Success:", values);
+    // console.log(cambrige,elocution,general);
 
     try {
       const response = await axios.post(`${baseUrl}/api/v1/create/create-student-details`, {values:values , cambrige: cambrige|| " not selected" , elocution:elocution || "not selected" , general:general || "not selected" });
-      console.log(response.data);
+      // console.log(response.data);
 
       message.success( response.data.message || 'Student details created successfully');
 
   } catch (error) {
-      console.error('Error creating student details:', error.message);
+      message.error('Error creating student details:', error.message);
   }
 
 
