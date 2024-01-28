@@ -24,7 +24,7 @@ body {
 }
 
 .formTitle {
-  text-align: center ;
+  text-align: center;
   font-size: 1.1em;
   letter-spacing: 1px;
   font-weight: 00;
@@ -128,14 +128,58 @@ body {
   margin-left: 32.5% !important;
 }
 
+.tableHeader {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: black !important;
+  background-color: #EBFAF2 !important;
+  text-align: center;
+}
+
+.titles {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: black !important;
+}
+
+.titles {
+  vertical-align: middle;
+}
+
+.tableCell {
+  vertical-align: middle;
+}
+
+.formInputTable {
+  margin: 0px !important;
+  border: 1px solid #73d13d !important;
+}
+
+:global(.ant-form-item) {
+  margin-bottom: 0px !important;
+}
+
+.ParentDetails {
+  display: block;
+}
+
+.MobileParentDetails {
+  display: none;
+}
+
 @media (max-width: 922px) {
   .PageTitle {
     text-align: center !important;
     font-size: 1.2em;
   }
-
   .formContainer {
+    width: 100%;
+  }
+
+  .formTitle {
     width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .formElement {
@@ -144,7 +188,7 @@ body {
 
   .formItem {
     flex-direction: column !important;
-    gap: 2px;
+    gap: 3vh;
   }
 
   .formLabel,
@@ -154,6 +198,7 @@ body {
 
   .ButtonGroup {
     flex-direction: column;
+    margin-top: 5vh !important;
     gap: 10px;
   }
 
@@ -168,5 +213,33 @@ body {
 
   .SpecialAreaFix {
     margin-left: 0px; /* Adjust this value as needed */
+  }
+
+  .ParentDetails {
+    display: none;
+  }
+
+  .MobileParentDetails {
+    display: block !important;
+    margin-top: 3vh;
+  }
+
+  .MobileParentDetailsTitle {
+    font-size: 1em;
+    font-weight: 600;
+  }
+
+  .formLabel {
+    font-size: 1em;
+    font-weight: 600;
+  }
+
+  .MobileParentDetailsParentType {
+    width: 100%;
+    text-align: center !important;
+    background-color: #EBFAF2;
+    padding: 10px;
+    margin-top: 3vh;
+    font-weight: 600;
   }
 }

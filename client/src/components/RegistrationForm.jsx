@@ -1,39 +1,54 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Form, Input, DatePicker, Button, Checkbox, message } from "antd";
+import {
+  Form,
+  Input,
+  DatePicker,
+  Button,
+  Checkbox,
+  message,
+  Table,
+} from "antd";
 import StudentRegistrationFormStyles from "./RegistrationFormStyles.module.css";
-import axios from 'axios';
+import axios from "axios";
 import baseUrl from "../baseUrl/baseUrl.js";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 const TextArea = Input.TextArea;
 
 const RegistrationForm = () => {
-   
+  const [form] = Form.useForm();
   /*------------for input start-------------------------------*/
   const [mobileNumber, setMobileNumber] = useState("");
   const [whatsAppNumber, setWhatsAppNumber] = useState("");
-  const [cambrige , setCambrige] = useState("")
-  const [elocution , setElocution] = useState("")
-  const [general , setGeneral] = useState("")
-
+  const [cambrige, setCambrige] = useState("");
+  const [elocution, setElocution] = useState("");
+  const [general, setGeneral] = useState("");
+  const [mothersMobileNumber, setMothersMobileNumber] = useState("");
+  const [fathersMobileNumber, setFathersMobileNumber] = useState("");
 
   /*------------for submit start-------------------------------*/
-  const onFinish = async(values) => {
+  const onFinish = async (values) => {
     // console.log("Success:", values);
     // console.log(cambrige,elocution,general);
 
     try {
-      const response = await axios.post(`${baseUrl}/api/v1/create/create-student-details`, {values:values , cambrige: cambrige|| " not selected" , elocution:elocution || "not selected" , general:general || "not selected" });
+      const response = await axios.post(
+        `${baseUrl}/api/v1/create/create-student-details`,
+        {
+          values: values,
+          cambrige: cambrige || " not selected",
+          elocution: elocution || "not selected",
+          general: general || "not selected",
+        }
+      );
       // console.log(response.data);
 
-      message.success( response.data.message || 'Student details created successfully');
-
-  } catch (error) {
-      message.error('Error creating student details:', error.message);
-  }
-
-
-
+      message.success(
+        response.data.message || "Student details created successfully"
+      );
+    } catch (error) {
+      message.error("Error creating student details:", error.message);
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -42,19 +57,26 @@ const RegistrationForm = () => {
 
   /*------------for submit END-------------------------*/
 
-const handleInputChange = (setFunction, event) => {
-  let value = event.target.value;
-  if (value === "") {
-    setFunction(value);
-  } else if (!value.startsWith("0")) {
-    value = "0" + value;
-  }
-  if (/^0\d{0,9}$/.test(value)) {
-    setFunction(value);
-  }
-};
+  const handleInputChange = (setFunction, event) => {
+    let value = event.target.value;
+    if (value === "") {
+      setFunction(value);
+    } else if (!value.startsWith("0")) {
+      value = "0" + value;
+    }
+    if (/^0\d{0,9}$/.test(value)) {
+      setFunction(value);
+    }
+  };
 
   /*------------for input END-------------------------*/
+
+  const dataSource = [
+    { key: "1", title: "Name" },
+    { key: "2", title: "Occupation" },
+    { key: "3", title: "Contact Number" },
+    { key: "4", title: "Email" },
+  ];
 
   return (
     <div>
@@ -66,6 +88,7 @@ const handleInputChange = (setFunction, event) => {
           Student Registration Form
         </div>
         <Form
+          form={form}
           className={StudentRegistrationFormStyles.StuForm}
           name="studentRegistrationForm"
           onFinish={onFinish}
@@ -278,6 +301,35 @@ const handleInputChange = (setFunction, event) => {
             </Form.Item>
           </div>
           <div className={StudentRegistrationFormStyles.formElement}>
+            <Form.Item name="grade">
+              <div className={StudentRegistrationFormStyles.formItem}>
+                <label
+                  name="grade"
+                  className={StudentRegistrationFormStyles.formLabel}
+                >
+                  Grade :
+                </label>
+                <Input
+                  className={StudentRegistrationFormStyles.formInput}
+                  type="text"
+                  name="grade"
+                  id="grade"
+                  placeholder="Enter your grade"
+                  allowClear
+                  onInput={(e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                    let num = parseInt(e.target.value, 10);
+                    if (num < 1) {
+                      e.target.value = 1;
+                    } else if (num > 13) {
+                      e.target.value = 13;
+                    }
+                  }}
+                />
+              </div>
+            </Form.Item>
+          </div>
+          <div className={StudentRegistrationFormStyles.formElement}>
             <Form.Item
               name="examination"
               rules={[
@@ -299,18 +351,330 @@ const handleInputChange = (setFunction, event) => {
                   name="examination"
                   id="examination"
                 >
-                  <Checkbox className="myCheckbox" value="Cambridge Assessment" onChange={(e)=>setCambrige(e.target.value)}>
+                  <Checkbox
+                    className="myCheckbox"
+                    value="Cambridge Assessment"
+                    onChange={(e) => setCambrige(e.target.value)}
+                  >
                     Cambridge Assessment
                   </Checkbox>
-                  <Checkbox className="myCheckbox" value="Elocution Exams" onChange={(e)=>setElocution(e.target.value)}>
+                  <Checkbox
+                    className="myCheckbox"
+                    value="Elocution Exams"
+                    onChange={(e) => setElocution(e.target.value)}
+                  >
                     Elocution Exams
                   </Checkbox>
-                  <Checkbox className="myCheckbox" value="General English" onChange={(e)=>setGeneral(e.target.value)}>
+                  <Checkbox
+                    className="myCheckbox"
+                    value="General English"
+                    onChange={(e) => setGeneral(e.target.value)}
+                  >
                     General English
                   </Checkbox>
                 </Checkbox.Group>
               </div>
             </Form.Item>
+          </div>
+          <div
+            className={`${StudentRegistrationFormStyles.formElement} ${StudentRegistrationFormStyles.ParentDetails}`}
+          >
+            <label
+              name="parentDetails"
+              className={StudentRegistrationFormStyles.formLabel}
+              style={{ marginBottom: "10px" }}
+            >
+              Enter Parent Details:
+            </label>
+            <table
+              style={{
+                boxShadow: "0 0 6px rgba(0,0,0,0.2)",
+                width: "100%",
+                height: "300px",
+                border: "1px solid rgba(115, 209, 61, 0.2)",
+              }}
+              className="table"
+            >
+              <thead>
+                <tr>
+                  <th
+                    className={StudentRegistrationFormStyles.tableHeader}
+                    scope="col"
+                    style={{ width: "20%" }}
+                  ></th>
+                  <th
+                    className={StudentRegistrationFormStyles.tableHeader}
+                    scope="col"
+                    style={{ width: "40%" }}
+                  >
+                    Father
+                  </th>
+                  <th
+                    className={StudentRegistrationFormStyles.tableHeader}
+                    scope="col"
+                    style={{ width: "40%" }}
+                  >
+                    Mother
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th
+                    className={StudentRegistrationFormStyles.titles}
+                    scope="row"
+                  >
+                    Name
+                  </th>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        name="FathersName"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        placeholder="Enter father's name"
+                        allowClear
+                      />
+                    </Form.Item>
+                  </td>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        name="MothersName"
+                        placeholder="Enter mother's name"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                      />
+                    </Form.Item>
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    className={StudentRegistrationFormStyles.titles}
+                    scope="row"
+                  >
+                    Occupation
+                  </th>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        name="FathersOccupation"
+                        placeholder="Enter father's occupation"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                      />
+                    </Form.Item>
+                  </td>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        name="MothersOccupation"
+                        placeholder="Enter mother's occupation"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                      />
+                    </Form.Item>
+                  </td>
+                </tr>
+                <tr className={StudentRegistrationFormStyles.tableROw}>
+                  <th
+                    className={StudentRegistrationFormStyles.titles}
+                    scope="row"
+                  >
+                    Contact Number
+                  </th>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        name="FathersContactNumber"
+                        placeholder="Enter father's contact number"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                        value={fathersMobileNumber}
+                        onChange={(e) =>
+                          handleInputChange(setFathersMobileNumber, e)
+                        }
+                      />
+                    </Form.Item>
+                  </td>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        name="MothersContactNumber"
+                        placeholder="Enter mother's contact number"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                        value={mothersMobileNumber}
+                        onChange={(e) =>
+                          handleInputChange(setMothersMobileNumber, e)
+                        }
+                      />
+                    </Form.Item>
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    className={StudentRegistrationFormStyles.titles}
+                    scope="row"
+                  >
+                    Email
+                  </th>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        type="email"
+                        name="FathersEmail"
+                        placeholder="Enter father's email"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                      />
+                    </Form.Item>
+                  </td>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        type="email"
+                        name="MothersEmail"
+                        placeholder="Enter mother's email"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                      />
+                    </Form.Item>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className={StudentRegistrationFormStyles.MobileParentDetails}>
+            <lable
+              className={StudentRegistrationFormStyles.MobileParentDetailsTitle}
+            >
+              Enter Parent Details
+            </lable>
+            <br />
+            <label
+              className={
+                StudentRegistrationFormStyles.MobileParentDetailsParentType
+              }
+            >
+              Details of Father
+            </label>
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Name
+              </lable>
+              <Form.Item>
+                <Input
+                  name="FathersName"
+                  placeholder="Enter father's name"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                />
+              </Form.Item>
+            </div>
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Occupation
+              </lable>
+              <Form.Item>
+                <Input
+                  name="FathersOccupation"
+                  placeholder="Enter father's occupation"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                />
+              </Form.Item>
+            </div>
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Contact Number
+              </lable>
+              <Form.Item>
+                <Input
+                  name="FathersContactNumber"
+                  placeholder="Enter father's contact number"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                  value={fathersMobileNumber}
+                  onChange={(e) => handleInputChange(setFathersMobileNumber, e)}
+                />
+              </Form.Item>
+            </div>
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Email
+              </lable>
+              <Form.Item>
+                <Input
+                  type="email"
+                  name="FathersEmail"
+                  placeholder="Enter father's email"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                />
+              </Form.Item>
+            </div>
+            <label
+              className={
+                StudentRegistrationFormStyles.MobileParentDetailsParentType
+              }
+            >
+              Details of Mother
+            </label>
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Name
+              </lable>
+              <Form.Item>
+                <Input
+                  name="MothersName"
+                  placeholder="Enter mother's name"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                />
+              </Form.Item>
+            </div>
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Occupation
+              </lable>
+              <Form.Item>
+                <Input
+                  name="MothersOccupation"
+                  placeholder="Enter mother's occupation"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                />
+              </Form.Item>
+            </div>
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Contact Number
+              </lable>
+              <Form.Item>
+                <Input
+                  name="MothersContactNumber"
+                  placeholder="Enter mother's contact number"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                  value={mothersMobileNumber}
+                  onChange={(e) => handleInputChange(setMothersMobileNumber, e)}
+                />
+              </Form.Item>
+            </div>
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Email
+              </lable>
+              <Form.Item>
+                <Input
+                  type="email"
+                  name="MothersEmail"
+                  placeholder="Enter mother's email"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                />
+              </Form.Item>
+            </div>
           </div>
           <div className={StudentRegistrationFormStyles.ButtonGroup}>
             <Button
