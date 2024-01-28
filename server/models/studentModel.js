@@ -13,10 +13,12 @@ const studentRecordSchema = new mongoose.Schema({
         type: String,
         required: [true, "Your details are required!"]
     },
-//     address: {
-//         type: String,
-//         required: [true, "Your details are required!"]
-//     },
+
+    address: {
+        type: String,
+        required: [true, "Your details are required!"]
+    },
+
     mobileNumber: {
         type: Number,
         required: [true, "Your details are required!"]
@@ -45,6 +47,51 @@ const studentRecordSchema = new mongoose.Schema({
     },
 
     general: {
+     type:String,
+     required: [true, "Your details are required!"]
+    },
+
+    mothersMobileNumber: {
+     type:Number,
+     required: [true, "Your details are required!"]
+    },
+
+    fathersMobileNumber: {
+     type:Number,
+     required: [true, "Your details are required!"]
+    },
+
+    grade: {
+     type:Number,
+     required: [true, "Your details are required!"]
+    },
+
+    fartherName: {
+     type:String,
+     required: [true, "Your details are required!"]
+    },
+
+    motherName: {
+     type:String,
+     required: [true, "Your details are required!"]
+    },
+
+    fartherOccupation: {
+     type:String,
+     required: [true, "Your details are required!"]
+    },
+
+    motherOccupation: {
+     type:String,
+     required: [true, "Your details are required!"]
+    },
+
+    fartherEmail: {
+     type:String,
+     required: [true, "Your details are required!"]
+    },
+
+    motherEmail: {
      type:String,
      required: [true, "Your details are required!"]
     },
