@@ -1,14 +1,39 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import { Form, Input, DatePicker, Button, Checkbox } from "antd";
+import { Form, Input, DatePicker, Button, Checkbox, message } from "antd";
 import StudentRegistrationFormStyles from "./RegistrationFormStyles.module.css";
+import axios from 'axios';
+import baseUrl from "../baseUrl/baseUrl.js";
 
 const TextArea = Input.TextArea;
 
 const RegistrationForm = () => {
+   
+  /*------------for input start-------------------------------*/
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [whatsAppNumber, setWhatsAppNumber] = useState("");
+  const [cambrige , setCambrige] = useState("")
+  const [elocution , setElocution] = useState("")
+  const [general , setGeneral] = useState("")
+
+
   /*------------for submit start-------------------------------*/
-  const onFinish = (values) => {
+  const onFinish = async(values) => {
     console.log("Success:", values);
+    console.log(cambrige,elocution,general);
+
+    try {
+      const response = await axios.post(`${baseUrl}/api/v1/create/create-student-details`, {values:values , cambrige: cambrige|| " not selected" , elocution:elocution || "not selected" , general:general || "not selected" });
+      console.log(response.data);
+
+      message.success( response.data.message || 'Student details created successfully');
+
+  } catch (error) {
+      console.error('Error creating student details:', error.message);
+  }
+
+
+
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -16,10 +41,6 @@ const RegistrationForm = () => {
   };
 
   /*------------for submit END-------------------------*/
-
-  /*------------for input start-------------------------------*/
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [whatsAppNumber, setWhatsAppNumber] = useState("");
 
 const handleInputChange = (setFunction, event) => {
   let value = event.target.value;
@@ -113,7 +134,7 @@ const handleInputChange = (setFunction, event) => {
           </div>
           <div className={StudentRegistrationFormStyles.formElement}>
             <Form.Item
-              name="address"
+              name="email"
               rules={[
                 {
                   required: true,
@@ -278,13 +299,13 @@ const handleInputChange = (setFunction, event) => {
                   name="examination"
                   id="examination"
                 >
-                  <Checkbox className="myCheckbox" value="Cambridge Assessment">
+                  <Checkbox className="myCheckbox" value="Cambridge Assessment" onChange={(e)=>setCambrige(e.target.value)}>
                     Cambridge Assessment
                   </Checkbox>
-                  <Checkbox className="myCheckbox" value="Elocution Exams">
+                  <Checkbox className="myCheckbox" value="Elocution Exams" onChange={(e)=>setElocution(e.target.value)}>
                     Elocution Exams
                   </Checkbox>
-                  <Checkbox className="myCheckbox" value="General English">
+                  <Checkbox className="myCheckbox" value="General English" onChange={(e)=>setGeneral(e.target.value)}>
                     General English
                   </Checkbox>
                 </Checkbox.Group>
