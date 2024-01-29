@@ -25,20 +25,27 @@ const RegistrationForm = () => {
   const [general, setGeneral] = useState("");
   const [mothersMobileNumber, setMothersMobileNumber] = useState("");
   const [fathersMobileNumber, setFathersMobileNumber] = useState("");
-  const [grade,setGrade] = useState("")
-  const [fartherName,setFartherName] = useState("")
-  const [motherName,setMotherName] = useState("")
-  const [fartherOccupation,setFartherOccupation] = useState("")
-  const [motherOccupation,setMotherOccupation] = useState("")
-  const [fartherEmail,setFartherEmail] = useState("")
-  const [motherEmail,setMotherEmail] = useState("")
-  const [address,setAddress] = useState("")
-  
+  const [grade, setGrade] = useState("");
+  const [fartherName, setFartherName] = useState("");
+  const [motherName, setMotherName] = useState("");
+  const [fartherOccupation, setFartherOccupation] = useState("");
+  const [motherOccupation, setMotherOccupation] = useState("");
+  const [fartherEmail, setFartherEmail] = useState("");
+  const [motherEmail, setMotherEmail] = useState("");
+  const [address, setAddress] = useState("");
 
   /*------------for submit start-------------------------------*/
   const onFinish = async (values) => {
     console.log("Success:", values);
-    console.log(grade,fartherName,motherName,fartherOccupation,motherOccupation,fartherEmail,motherEmail);
+    console.log(
+      grade,
+      fartherName,
+      motherName,
+      fartherOccupation,
+      motherOccupation,
+      fartherEmail,
+      motherEmail
+    );
 
     try {
       const response = await axios.post(
@@ -59,12 +66,13 @@ const RegistrationForm = () => {
           fartherEmail: fartherEmail || "not selected",
           motherEmail: motherEmail || "not selected",
           address: address || "not selected",
-          
         }
       );
       // console.log(response.data);
 
-      message.success(response.data.message || "Student details created successfully");
+      message.success(
+        response.data.message || "Student details created successfully"
+      );
     } catch (error) {
       message.error("Error creating student details:", error.message);
     }
@@ -199,7 +207,7 @@ const RegistrationForm = () => {
                   placeholder="Enter your address"
                   rows={4}
                   allowClear
-                  onChange={(e)=>setAddress(e.target.value)}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
               </div>
             </Form.Item>
@@ -258,12 +266,17 @@ const RegistrationForm = () => {
                   placeholder="Enter your whatsapp number"
                   value={whatsAppNumber}
                   onChange={(e) => handleInputChange(setWhatsAppNumber, e)}
+                  form={form}
                 />
               </div>
             </Form.Item>
           </div>
-          <div className={StudentRegistrationFormStyles.formElement}>
+          <div className={StudentRegistrationFormStyles.DatePick}>
+            <label className={StudentRegistrationFormStyles.SpecialDatePickerLabel}>
+              Date of Birth :
+            </label>
             <Form.Item
+              noStyle
               name="birthDay"
               rules={[
                 {
@@ -272,26 +285,17 @@ const RegistrationForm = () => {
                 },
               ]}
             >
-              <div className={StudentRegistrationFormStyles.formItem}>
-                <label
-                  name="birthDay"
-                  className={StudentRegistrationFormStyles.formLabel}
-                >
-                  Date of Birth :
-                </label>
-                <DatePicker
-                  className={StudentRegistrationFormStyles.Special}
-                  style={{
-                    border: "1px solid #73d13d",
-                    outline: "none",
-                  }}
-                  name="birthDay"
-                  id="birthDay"
-                  placeholder="Enter your birthday"
-                />
-              </div>
+              <DatePicker
+                className={StudentRegistrationFormStyles.SpecialDatePicker}
+                style={{
+                  border: "1px solid #73d13d",
+                  outline: "none",
+                }}
+                placeholder="Enter your birthday"
+              />
             </Form.Item>
           </div>
+
           <div className={StudentRegistrationFormStyles.formElement}>
             <Form.Item
               name="school"
@@ -336,7 +340,7 @@ const RegistrationForm = () => {
                   id="grade"
                   placeholder="Enter your grade"
                   allowClear
-                  onChange={(e)=>setGrade(e.target.value)}
+                  onChange={(e) => setGrade(e.target.value)}
                   onInput={(e) => {
                     e.target.value = e.target.value.replace(/[^0-9]/g, "");
                     let num = parseInt(e.target.value, 10);
@@ -454,7 +458,7 @@ const RegistrationForm = () => {
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         placeholder="Enter father's name"
                         allowClear
-                        onChange={(e) =>setFartherName(e.target.value)}
+                        onChange={(e) => setFartherName(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -465,7 +469,7 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's name"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e)=>setMotherName(e.target.value)}
+                        onChange={(e) => setMotherName(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -484,7 +488,7 @@ const RegistrationForm = () => {
                         placeholder="Enter father's occupation"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e)=>setFartherOccupation(e.target.value)}
+                        onChange={(e) => setFartherOccupation(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -495,7 +499,7 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's occupation"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e)=>setMotherOccupation(e.target.value)}
+                        onChange={(e) => setMotherOccupation(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -551,7 +555,7 @@ const RegistrationForm = () => {
                         placeholder="Enter father's email"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e)=>setFartherEmail(e.target.value)}
+                        onChange={(e) => setFartherEmail(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -563,7 +567,7 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's email"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e)=>setMotherEmail(e.target.value)}
+                        onChange={(e) => setMotherEmail(e.target.value)}
                       />
                     </Form.Item>
                   </td>
