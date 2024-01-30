@@ -63,7 +63,7 @@ const studentRecordSchema = new mongoose.Schema({
 
     grade: {
      type:Number,
-     required: [true, "Your details are required!"]
+    //  required: [false, "Your details are required!"]
     },
 
     fartherName: {

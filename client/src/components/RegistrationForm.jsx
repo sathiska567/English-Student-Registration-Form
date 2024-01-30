@@ -58,21 +58,24 @@ const RegistrationForm = () => {
           general: general || "not selected",
           fathersMobileNumber: fathersMobileNumber || "not selected",
           mothersMobileNumber: mothersMobileNumber || "not selected",
-          grade: grade || "not selected",
+          grade: grade,
           fartherName: fartherName || "not selected",
-          motherName: motherName || "not selected",
+          motherName:motherName || "not selected",
           fartherOccupation: fartherOccupation || "not selected",
           motherOccupation: motherOccupation || "not selected",
           fartherEmail: fartherEmail || "not selected",
           motherEmail: motherEmail || "not selected",
-          address: address || "not selected",
+          
         }
       );
-      // console.log(response.data);
 
-      message.success(
-        response.data.message || "Student details created successfully"
-      );
+      console.log(response.data);
+
+    if(response.data.success){
+       message.success(response.data.message)
+      //  window.location.reload();
+    }
+
     } catch (error) {
       message.error("Error creating student details:", error.message);
     }
@@ -340,7 +343,7 @@ const RegistrationForm = () => {
                   id="grade"
                   placeholder="Enter your grade"
                   allowClear
-                  onChange={(e) => setGrade(e.target.value)}
+                  onChange={(e) => setGrade(e.target.value) || "not selected"}
                   onInput={(e) => {
                     e.target.value = e.target.value.replace(/[^0-9]/g, "");
                     let num = parseInt(e.target.value, 10);
@@ -458,7 +461,8 @@ const RegistrationForm = () => {
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         placeholder="Enter father's name"
                         allowClear
-                        onChange={(e) => setFartherName(e.target.value)}
+                        onChange={(e)=>setFartherName(e.target.value)}
+                        
                       />
                     </Form.Item>
                   </td>
@@ -469,7 +473,8 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's name"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setMotherName(e.target.value)}
+                        onChange={(e)=>setMotherName(e.target.value)}
+                        
                       />
                     </Form.Item>
                   </td>
@@ -488,7 +493,8 @@ const RegistrationForm = () => {
                         placeholder="Enter father's occupation"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setFartherOccupation(e.target.value)}
+                        onChange={(e)=>setFartherOccupation(e.target.value)}
+                        
                       />
                     </Form.Item>
                   </td>
@@ -499,7 +505,7 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's occupation"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setMotherOccupation(e.target.value)}
+                        onChange={(e)=>setMotherOccupation(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -555,7 +561,7 @@ const RegistrationForm = () => {
                         placeholder="Enter father's email"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setFartherEmail(e.target.value)}
+                        onChange={(e)=>setFartherEmail(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -567,7 +573,7 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's email"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setMotherEmail(e.target.value)}
+                        onChange={(e)=>setMotherEmail(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -575,6 +581,7 @@ const RegistrationForm = () => {
               </tbody>
             </table>
           </div>
+
           <div className={StudentRegistrationFormStyles.MobileParentDetails}>
             <lable
               className={StudentRegistrationFormStyles.MobileParentDetailsTitle}
@@ -599,6 +606,7 @@ const RegistrationForm = () => {
                   placeholder="Enter father's name"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
+                  onChange={(e)=>setFartherName(e.target.value)}
                 />
               </Form.Item>
             </div>
@@ -612,6 +620,7 @@ const RegistrationForm = () => {
                   placeholder="Enter father's occupation"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
+                  onChange={(e)=>setMotherOccupation(e.target.value)}
                 />
               </Form.Item>
             </div>
@@ -641,6 +650,7 @@ const RegistrationForm = () => {
                   placeholder="Enter father's email"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
+                  onChange={(e)=>setFartherEmail(e.target.value)}
                 />
               </Form.Item>
             </div>
@@ -661,6 +671,7 @@ const RegistrationForm = () => {
                   placeholder="Enter mother's name"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
+                  onChange={(e)=>setMotherName(e.target.value)}
                 />
               </Form.Item>
             </div>
@@ -674,6 +685,7 @@ const RegistrationForm = () => {
                   placeholder="Enter mother's occupation"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
+                  onChange={(e)=>setMotherOccupation(e.target.value)}
                 />
               </Form.Item>
             </div>
@@ -703,6 +715,7 @@ const RegistrationForm = () => {
                   placeholder="Enter mother's email"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
+                  onChange={(e)=>setMotherEmail(e.target.value)}
                 />
               </Form.Item>
             </div>
