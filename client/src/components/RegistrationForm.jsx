@@ -33,6 +33,10 @@ const RegistrationForm = () => {
   const [fartherEmail, setFartherEmail] = useState("");
   const [motherEmail, setMotherEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [guardianName, setGuardianName] = useState("");
+  const [guardianOccupation, setGuardianOccupation] = useState("");
+  const [guardianMobileNumber, setGuardianMobileNumber] = useState("");
+  const [guardianEmail, setGuardianEmail] = useState("");
 
   /*------------for submit start-------------------------------*/
   const onFinish = async (values) => {
@@ -60,22 +64,20 @@ const RegistrationForm = () => {
           mothersMobileNumber: mothersMobileNumber || "not selected",
           grade: grade,
           fartherName: fartherName || "not selected",
-          motherName:motherName || "not selected",
+          motherName: motherName || "not selected",
           fartherOccupation: fartherOccupation || "not selected",
           motherOccupation: motherOccupation || "not selected",
           fartherEmail: fartherEmail || "not selected",
           motherEmail: motherEmail || "not selected",
-          
         }
       );
 
       console.log(response.data);
 
-    if(response.data.success){
-       message.success(response.data.message)
-      //  window.location.reload();
-    }
-
+      if (response.data.success) {
+        message.success(response.data.message);
+        //  window.location.reload();
+      }
     } catch (error) {
       message.error("Error creating student details:", error.message);
     }
@@ -275,7 +277,9 @@ const RegistrationForm = () => {
             </Form.Item>
           </div>
           <div className={StudentRegistrationFormStyles.DatePick}>
-            <label className={StudentRegistrationFormStyles.SpecialDatePickerLabel}>
+            <label
+              className={StudentRegistrationFormStyles.SpecialDatePickerLabel}
+            >
               Date of Birth :
             </label>
             <Form.Item
@@ -412,7 +416,7 @@ const RegistrationForm = () => {
               className={StudentRegistrationFormStyles.formLabel}
               style={{ marginBottom: "10px" }}
             >
-              Enter Parent Details:
+              Enter Parent / Guardian Details:
             </label>
             <table
               style={{
@@ -428,21 +432,28 @@ const RegistrationForm = () => {
                   <th
                     className={StudentRegistrationFormStyles.tableHeader}
                     scope="col"
-                    style={{ width: "20%" }}
+                    style={{ width: "15%" }}
                   ></th>
                   <th
                     className={StudentRegistrationFormStyles.tableHeader}
                     scope="col"
-                    style={{ width: "40%" }}
+                    style={{ width: "28%" }}
                   >
                     Father
                   </th>
                   <th
                     className={StudentRegistrationFormStyles.tableHeader}
                     scope="col"
-                    style={{ width: "40%" }}
+                    style={{ width: "28%" }}
                   >
                     Mother
+                  </th>
+                  <th
+                    className={StudentRegistrationFormStyles.tableHeader}
+                    scope="col"
+                    style={{ width: "28%" }}
+                  >
+                    Guardian
                   </th>
                 </tr>
               </thead>
@@ -461,11 +472,11 @@ const RegistrationForm = () => {
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         placeholder="Enter father's name"
                         allowClear
-                        onChange={(e)=>setFartherName(e.target.value)}
-                        
+                        onChange={(e) => setFartherName(e.target.value)}
                       />
                     </Form.Item>
                   </td>
+
                   <td className={StudentRegistrationFormStyles.tableCell}>
                     <Form.Item>
                       <Input
@@ -473,12 +484,23 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's name"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e)=>setMotherName(e.target.value)}
-                        
+                        onChange={(e) => setMotherName(e.target.value)}
+                      />
+                    </Form.Item>
+                  </td>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        name="GuardianName"
+                        placeholder="Enter guardian's name"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                        onChange={(e) => setGuardianName(e.target.value)}
                       />
                     </Form.Item>
                   </td>
                 </tr>
+
                 <tr>
                   <th
                     className={StudentRegistrationFormStyles.titles}
@@ -493,8 +515,7 @@ const RegistrationForm = () => {
                         placeholder="Enter father's occupation"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e)=>setFartherOccupation(e.target.value)}
-                        
+                        onChange={(e) => setFartherOccupation(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -505,11 +526,23 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's occupation"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e)=>setMotherOccupation(e.target.value)}
+                        onChange={(e) => setMotherOccupation(e.target.value)}
+                      />
+                    </Form.Item>
+                  </td>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        name="GuardianOccupation"
+                        placeholder="Enter guardian's occupation"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                        onChange={(e) => setGuardianOccupation(e.target.value)}
                       />
                     </Form.Item>
                   </td>
                 </tr>
+
                 <tr className={StudentRegistrationFormStyles.tableROw}>
                   <th
                     className={StudentRegistrationFormStyles.titles}
@@ -545,7 +578,22 @@ const RegistrationForm = () => {
                       />
                     </Form.Item>
                   </td>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        name="GuardianMobileNumber"
+                        placeholder="Enter guardian's contact number"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                        value={guardianMobileNumber}
+                        onChange={(e) =>
+                          handleInputChange(setGuardianMobileNumber, e)
+                        }
+                      />
+                    </Form.Item>
+                  </td>
                 </tr>
+
                 <tr>
                   <th
                     className={StudentRegistrationFormStyles.titles}
@@ -561,7 +609,7 @@ const RegistrationForm = () => {
                         placeholder="Enter father's email"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e)=>setFartherEmail(e.target.value)}
+                        onChange={(e) => setFartherEmail(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -573,7 +621,19 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's email"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e)=>setMotherEmail(e.target.value)}
+                        onChange={(e) => setMotherEmail(e.target.value)}
+                      />
+                    </Form.Item>
+                  </td>
+                  <td className={StudentRegistrationFormStyles.tableCell}>
+                    <Form.Item>
+                      <Input
+                        type="email"
+                        name="GuardianEmail"
+                        placeholder="Enter guardian's email"
+                        className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                        allowClear
+                        onChange={(e) => setGuardianEmail(e.target.value)}
                       />
                     </Form.Item>
                   </td>
@@ -586,7 +646,7 @@ const RegistrationForm = () => {
             <lable
               className={StudentRegistrationFormStyles.MobileParentDetailsTitle}
             >
-              Enter Parent Details
+              Enter Parent / Guardian Details:
             </lable>
             <br />
             <label
@@ -606,7 +666,7 @@ const RegistrationForm = () => {
                   placeholder="Enter father's name"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e)=>setFartherName(e.target.value)}
+                  onChange={(e) => setFartherName(e.target.value)}
                 />
               </Form.Item>
             </div>
@@ -620,7 +680,7 @@ const RegistrationForm = () => {
                   placeholder="Enter father's occupation"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e)=>setMotherOccupation(e.target.value)}
+                  onChange={(e) => setMotherOccupation(e.target.value)}
                 />
               </Form.Item>
             </div>
@@ -650,10 +710,11 @@ const RegistrationForm = () => {
                   placeholder="Enter father's email"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e)=>setFartherEmail(e.target.value)}
+                  onChange={(e) => setFartherEmail(e.target.value)}
                 />
               </Form.Item>
             </div>
+
             <label
               className={
                 StudentRegistrationFormStyles.MobileParentDetailsParentType
@@ -671,7 +732,7 @@ const RegistrationForm = () => {
                   placeholder="Enter mother's name"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e)=>setMotherName(e.target.value)}
+                  onChange={(e) => setGuardianName(e.target.value)}
                 />
               </Form.Item>
             </div>
@@ -685,7 +746,7 @@ const RegistrationForm = () => {
                   placeholder="Enter mother's occupation"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e)=>setMotherOccupation(e.target.value)}
+                  onChange={(e) => setMotherOccupation(e.target.value)}
                 />
               </Form.Item>
             </div>
@@ -715,11 +776,83 @@ const RegistrationForm = () => {
                   placeholder="Enter mother's email"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e)=>setMotherEmail(e.target.value)}
+                  onChange={(e) => setMotherEmail(e.target.value)}
+                />
+              </Form.Item>
+            </div>
+            <label
+              className={
+                StudentRegistrationFormStyles.MobileParentDetailsParentType
+              }
+            >
+              Details of Guardian
+            </label>
+
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Name
+              </lable>
+              <Form.Item>
+                <Input
+                  name="GuardianName"
+                  placeholder="Enter gundian's name"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                  onChange={(e) => setMotherName(e.target.value)}
+                />
+              </Form.Item>
+            </div>
+
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Occupation
+              </lable>
+              <Form.Item>
+                <Input
+                  name="GuardiansOccupation"
+                  placeholder="Enter guardian's occupation"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                  onChange={(e) => setGuardianOccupation(e.target.value)}
+                />
+              </Form.Item>
+            </div>
+
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Contact Number
+              </lable>
+              <Form.Item>
+                <Input
+                  name="GuardianMobileNumber"
+                  placeholder="Enter guardian's contact number"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                  value={guardianMobileNumber}
+                  onChange={(e) =>
+                    handleInputChange(setGuardianMobileNumber, e)
+                  }
+                />
+              </Form.Item>
+            </div>
+
+            <div className={StudentRegistrationFormStyles.formElement}>
+              <lable className={StudentRegistrationFormStyles.formLabel}>
+                Email
+              </lable>
+              <Form.Item>
+                <Input
+                  type="email"
+                  name="GuardiansEmail"
+                  placeholder="Enter guardian's email"
+                  className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
+                  allowClear
+                  onChange={(e) => setGuardianEmail(e.target.value)}
                 />
               </Form.Item>
             </div>
           </div>
+
           <div className={StudentRegistrationFormStyles.ButtonGroup}>
             <Button
               className={StudentRegistrationFormStyles.formButton}

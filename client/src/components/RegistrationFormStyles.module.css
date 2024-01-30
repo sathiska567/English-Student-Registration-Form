@@ -16,7 +16,7 @@ body {
 }
 
 .formContainer {
-  width: 75%;
+  width: 85%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
@@ -40,7 +40,7 @@ body {
 }
 
 .formElement {
-  width: 80%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 3%;
@@ -77,7 +77,7 @@ body {
 }
 
 .DatePick {
-  width: 80%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -110,7 +110,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 50px;
-  margin-top: 20px;
+  margin-top: 10vh;
   margin-bottom: 50px;
 }
 
