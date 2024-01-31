@@ -61,6 +61,11 @@ const studentRecordSchema = new mongoose.Schema({
      required: [true, "Your details are required!"]
     },
 
+    GuardianMobileNumber: {
+     type:Number,
+     required: [true, "Your details are required!"]
+    },
+
     grade: {
      type:Number,
     //  required: [false, "Your details are required!"]
@@ -76,6 +81,11 @@ const studentRecordSchema = new mongoose.Schema({
      required: [true, "Your details are required!"]
     },
 
+    GuardianName: {
+     type:String,
+     required: [true, "Your details are required!"]
+    },
+
     fartherOccupation: {
      type:String,
      required: [true, "Your details are required!"]
@@ -86,12 +96,22 @@ const studentRecordSchema = new mongoose.Schema({
      required: [true, "Your details are required!"]
     },
 
+    GuardianOccupation: {
+     type:String,
+     required: [true, "Your details are required!"]
+    },
+
     fartherEmail: {
      type:String,
      required: [true, "Your details are required!"]
     },
 
     motherEmail: {
+     type:String,
+     required: [true, "Your details are required!"]
+    },
+    
+    GuardianEmail: {
      type:String,
      required: [true, "Your details are required!"]
     },

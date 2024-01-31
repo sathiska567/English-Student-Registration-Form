@@ -48,7 +48,11 @@ const RegistrationForm = () => {
       fartherOccupation,
       motherOccupation,
       fartherEmail,
-      motherEmail
+      motherEmail,
+      guardianName,
+      guardianOccupation,
+      guardianMobileNumber,
+      guardianEmail
     );
 
     try {
@@ -62,13 +66,17 @@ const RegistrationForm = () => {
           general: general || "not selected",
           fathersMobileNumber: fathersMobileNumber || "not selected",
           mothersMobileNumber: mothersMobileNumber || "not selected",
+          GuardianMobileNumber: mothersMobileNumber || "not selected",
           grade: grade,
           fartherName: fartherName || "not selected",
           motherName: motherName || "not selected",
+          GuardianName: motherName || "not selected",
           fartherOccupation: fartherOccupation || "not selected",
           motherOccupation: motherOccupation || "not selected",
+          GuardianOccupation: motherOccupation || "not selected",
           fartherEmail: fartherEmail || "not selected",
           motherEmail: motherEmail || "not selected",
+          GuardianEmail: motherEmail || "not selected",
         }
       );
 

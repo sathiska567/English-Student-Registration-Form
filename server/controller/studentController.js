@@ -25,17 +25,21 @@ const studentDetailsController = async(req,res)=>{
 
         mothersMobileNumber:req.body.mothersMobileNumber,
         fathersMobileNumber:req.body.fathersMobileNumber,
+        GuardianMobileNumber:req.body.GuardianMobileNumber,
 
         grade:req.body.grade,
 
         fartherName:req.body.fartherName,
         motherName:req.body.motherName,
+        GuardianName:req.body.GuardianName,
 
         fartherOccupation:req.body.fartherOccupation,
         motherOccupation:req.body.motherOccupation,
+        GuardianOccupation:req.body.GuardianOccupation,
 
         fartherEmail:req.body.fartherEmail,
         motherEmail:req.body.motherEmail,
+        GuardianEmail:req.body.GuardianEmail,
    
       })
 
