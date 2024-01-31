@@ -117,7 +117,7 @@ const RegistrationForm = () => {
       </div>
       <div className={StudentRegistrationFormStyles.formContainer}>
         <div className={StudentRegistrationFormStyles.formTitle}>
-          Student Registration Form
+          {"Student's Registration Form"}
         </div>
         <Form
           form={form}
@@ -388,7 +388,7 @@ const RegistrationForm = () => {
                     value="Cambridge Assessment"
                     onChange={(e) => setCambrige(e.target.value)}
                   >
-                    Cambridge Assessment
+                    Cambridge Assessments
                   </Checkbox>
                   <Checkbox
                     className="myCheckbox"
@@ -654,7 +654,7 @@ const RegistrationForm = () => {
                 StudentRegistrationFormStyles.MobileParentDetailsParentType
               }
             >
-              Details of Father
+              {"Details of Father's"}
             </label>
             <div className={StudentRegistrationFormStyles.formElement}>
               <lable className={StudentRegistrationFormStyles.formLabel}>
@@ -720,7 +720,7 @@ const RegistrationForm = () => {
                 StudentRegistrationFormStyles.MobileParentDetailsParentType
               }
             >
-              Details of Mother
+              {"Details of Mother's"}
             </label>
             <div className={StudentRegistrationFormStyles.formElement}>
               <lable className={StudentRegistrationFormStyles.formLabel}>
