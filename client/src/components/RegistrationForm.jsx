@@ -64,7 +64,7 @@ const RegistrationForm = () => {
           cambrige: cambrige || " not selected",
           elocution: elocution || "not selected",
           general: general || "not selected",
-          fathersMobileNumber: fathersMobileNumber || "not selected",
+          fathersMobileNumber: fathersMobileNumber,
           mothersMobileNumber: mothersMobileNumber || "not selected",
           GuardianMobileNumber: mothersMobileNumber || "not selected",
           grade: grade,
@@ -480,7 +480,7 @@ const RegistrationForm = () => {
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         placeholder="Enter father's name"
                         allowClear
-                        onChange={(e) => setFartherName(e.target.value)}
+                        onChange={(e) => setFartherName(e.target.value) || "Not selected"}
                       />
                     </Form.Item>
                   </td>
@@ -492,7 +492,7 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's name"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setMotherName(e.target.value)}
+                        onChange={(e) => setMotherName(e.target.value) || "Not selected"}
                       />
                     </Form.Item>
                   </td>
@@ -503,7 +503,7 @@ const RegistrationForm = () => {
                         placeholder="Enter guardian's name"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setGuardianName(e.target.value)}
+                        onChange={(e) => setGuardianName(e.target.value) || "Not selected"}
                       />
                     </Form.Item>
                   </td>
@@ -523,7 +523,7 @@ const RegistrationForm = () => {
                         placeholder="Enter father's occupation"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setFartherOccupation(e.target.value)}
+                        onChange={(e) => setFartherOccupation(e.target.value) || "Not selected"}
                       />
                     </Form.Item>
                   </td>
@@ -534,7 +534,7 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's occupation"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setMotherOccupation(e.target.value)}
+                        onChange={(e) => setMotherOccupation(e.target.value) || "Not selected"}
                       />
                     </Form.Item>
                   </td>
@@ -545,7 +545,7 @@ const RegistrationForm = () => {
                         placeholder="Enter guardian's occupation"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setGuardianOccupation(e.target.value)}
+                        onChange={(e) => setGuardianOccupation(e.target.value) || "Not selected"}
                       />
                     </Form.Item>
                   </td>

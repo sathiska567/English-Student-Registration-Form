@@ -53,17 +53,17 @@ const studentRecordSchema = new mongoose.Schema({
 
     mothersMobileNumber: {
      type:Number,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
     fathersMobileNumber: {
      type:Number,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
     GuardianMobileNumber: {
      type:Number,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
     grade: {
@@ -73,47 +73,47 @@ const studentRecordSchema = new mongoose.Schema({
 
     fartherName: {
      type:String,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
     motherName: {
      type:String,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
     GuardianName: {
      type:String,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
     fartherOccupation: {
      type:String,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
     motherOccupation: {
      type:String,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
     GuardianOccupation: {
      type:String,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
     fartherEmail: {
      type:String,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
     motherEmail: {
      type:String,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
     
     GuardianEmail: {
      type:String,
-     required: [true, "Your details are required!"]
+     required: [false, "Your details are required!"]
     },
 
 });
