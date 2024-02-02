@@ -65,26 +65,27 @@ const RegistrationForm = () => {
           elocution: elocution || "not selected",
           general: general || "not selected",
           fathersMobileNumber: fathersMobileNumber,
-          mothersMobileNumber: mothersMobileNumber || "not selected",
-          GuardianMobileNumber: mothersMobileNumber || "not selected",
+          mothersMobileNumber: mothersMobileNumber,
+          GuardianMobileNumber: mothersMobileNumber,
           grade: grade,
-          fartherName: fartherName || "not selected",
-          motherName: motherName || "not selected",
-          GuardianName: motherName || "not selected",
-          fartherOccupation: fartherOccupation || "not selected",
-          motherOccupation: motherOccupation || "not selected",
-          GuardianOccupation: motherOccupation || "not selected",
-          fartherEmail: fartherEmail || "not selected",
-          motherEmail: motherEmail || "not selected",
-          GuardianEmail: motherEmail || "not selected",
+          fartherName: fartherName ,
+          motherName: motherName ,
+          GuardianName: motherName ,
+          fartherOccupation: fartherOccupation,
+          motherOccupation: motherOccupation ,
+          GuardianOccupation: motherOccupation,
+          fartherEmail: fartherEmail,
+          motherEmail: motherEmail,
+          GuardianEmail: motherEmail,
         }
       );
 
       console.log(response.data);
 
       if (response.data.success) {
+
         message.success(response.data.message);
-        //  window.location.reload();
+        
       }
     } catch (error) {
       message.error("Error creating student details:", error.message);
@@ -567,7 +568,7 @@ const RegistrationForm = () => {
                         allowClear
                         value={fathersMobileNumber}
                         onChange={(e) =>
-                          handleInputChange(setFathersMobileNumber, e)
+                          handleInputChange(setFathersMobileNumber, e) || "Not selected"
                         }
                       />
                     </Form.Item>
@@ -581,7 +582,7 @@ const RegistrationForm = () => {
                         allowClear
                         value={mothersMobileNumber}
                         onChange={(e) =>
-                          handleInputChange(setMothersMobileNumber, e)
+                          handleInputChange(setMothersMobileNumber, e) || "Not selected"
                         }
                       />
                     </Form.Item>
@@ -595,7 +596,7 @@ const RegistrationForm = () => {
                         allowClear
                         value={guardianMobileNumber}
                         onChange={(e) =>
-                          handleInputChange(setGuardianMobileNumber, e)
+                          handleInputChange(setGuardianMobileNumber, e) || "Not selected"
                         }
                       />
                     </Form.Item>
@@ -617,7 +618,7 @@ const RegistrationForm = () => {
                         placeholder="Enter father's email"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setFartherEmail(e.target.value)}
+                        onChange={(e) => setFartherEmail(e.target.value)|| "Not selected"}
                       />
                     </Form.Item>
                   </td>
@@ -629,7 +630,7 @@ const RegistrationForm = () => {
                         placeholder="Enter mother's email"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setMotherEmail(e.target.value)}
+                        onChange={(e) => setMotherEmail(e.target.value)|| "Not selected"}
                       />
                     </Form.Item>
                   </td>
@@ -641,7 +642,7 @@ const RegistrationForm = () => {
                         placeholder="Enter guardian's email"
                         className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                         allowClear
-                        onChange={(e) => setGuardianEmail(e.target.value)}
+                        onChange={(e) => setGuardianEmail(e.target.value)|| "Not selected"}
                       />
                     </Form.Item>
                   </td>
@@ -674,7 +675,7 @@ const RegistrationForm = () => {
                   placeholder="Enter father's name"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e) => setFartherName(e.target.value)}
+                  onChange={(e) => setFartherName(e.target.value)|| "Not selected"}
                 />
               </Form.Item>
             </div>
@@ -688,7 +689,7 @@ const RegistrationForm = () => {
                   placeholder="Enter father's occupation"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e) => setMotherOccupation(e.target.value)}
+                  onChange={(e) => setMotherOccupation(e.target.value)|| "Not selected"}
                 />
               </Form.Item>
             </div>
@@ -703,7 +704,7 @@ const RegistrationForm = () => {
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
                   value={fathersMobileNumber}
-                  onChange={(e) => handleInputChange(setFathersMobileNumber, e)}
+                  onChange={(e) => handleInputChange(setFathersMobileNumber, e)|| "Not selected"}
                 />
               </Form.Item>
             </div>
@@ -718,7 +719,7 @@ const RegistrationForm = () => {
                   placeholder="Enter father's email"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e) => setFartherEmail(e.target.value)}
+                  onChange={(e) => setFartherEmail(e.target.value)|| "Not selected"}
                 />
               </Form.Item>
             </div>
@@ -740,7 +741,7 @@ const RegistrationForm = () => {
                   placeholder="Enter mother's name"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e) => setGuardianName(e.target.value)}
+                  onChange={(e) => setGuardianName(e.target.value)|| "Not selected"}
                 />
               </Form.Item>
             </div>
@@ -754,7 +755,7 @@ const RegistrationForm = () => {
                   placeholder="Enter mother's occupation"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e) => setMotherOccupation(e.target.value)}
+                  onChange={(e) => setMotherOccupation(e.target.value)|| "Not selected"}
                 />
               </Form.Item>
             </div>
@@ -769,7 +770,7 @@ const RegistrationForm = () => {
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
                   value={mothersMobileNumber}
-                  onChange={(e) => handleInputChange(setMothersMobileNumber, e)}
+                  onChange={(e) => handleInputChange(setMothersMobileNumber, e)|| "Not selected"}
                 />
               </Form.Item>
             </div>
@@ -784,7 +785,7 @@ const RegistrationForm = () => {
                   placeholder="Enter mother's email"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e) => setMotherEmail(e.target.value)}
+                  onChange={(e) => setMotherEmail(e.target.value)|| "Not selected"}
                 />
               </Form.Item>
             </div>
@@ -806,7 +807,7 @@ const RegistrationForm = () => {
                   placeholder="Enter gundian's name"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e) => setMotherName(e.target.value)}
+                  onChange={(e) => setMotherName(e.target.value)|| "Not selected"}
                 />
               </Form.Item>
             </div>
@@ -821,7 +822,7 @@ const RegistrationForm = () => {
                   placeholder="Enter guardian's occupation"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e) => setGuardianOccupation(e.target.value)}
+                  onChange={(e) => setGuardianOccupation(e.target.value)|| "Not selected"}
                 />
               </Form.Item>
             </div>
@@ -838,7 +839,7 @@ const RegistrationForm = () => {
                   allowClear
                   value={guardianMobileNumber}
                   onChange={(e) =>
-                    handleInputChange(setGuardianMobileNumber, e)
+                    handleInputChange(setGuardianMobileNumber, e)|| "Not selected"
                   }
                 />
               </Form.Item>
@@ -855,7 +856,7 @@ const RegistrationForm = () => {
                   placeholder="Enter guardian's email"
                   className={`${StudentRegistrationFormStyles.formInputTable} ${StudentRegistrationFormStyles.inputSpecial}`}
                   allowClear
-                  onChange={(e) => setGuardianEmail(e.target.value)}
+                  onChange={(e) => setGuardianEmail(e.target.value)|| "Not selected"}
                 />
               </Form.Item>
             </div>

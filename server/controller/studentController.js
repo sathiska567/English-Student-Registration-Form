@@ -45,6 +45,8 @@ const studentDetailsController = async(req,res)=>{
 
     await data.save();
 
+    console.log(data);
+
      res.status(200).send({
         success:true,
         message:"Student Details saved successfully",
