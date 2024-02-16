@@ -40,7 +40,7 @@ const RegistrationForm = () => {
   const [guardianMobileNumber, setGuardianMobileNumber] = useState("");
   const [guardianEmail, setGuardianEmail] = useState("");
   const navigate = useNavigate();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
     const showModal = () => {
       setIsModalOpen(true);
@@ -53,6 +53,7 @@ const RegistrationForm = () => {
     const handleCancel = () => {
       setIsModalOpen(false);
     };
+
 
   /*------------for submit start-------------------------------*/
   const onFinish = async (values) => {
@@ -158,13 +159,6 @@ const RegistrationForm = () => {
         <div>G.U. Language Centre</div>
         <div className={StudentRegistrationFormStyles.ClassDetails}>
           <div>G U Language Center</div>
-          <div>No.4/2 St.Michelle Road, Suwarapola,Piliyandala</div>
-          <a href="mailto:Gayaniukwattalc@gmail.com">
-            Gayaniukwattalc@gmail.com
-          </a>
-          <br />
-          <a href="www.gulcentre.com">www.gulcentre.com</a> <br />
-          <a href="tel:0750101296">0750101296</a>
         </div>
       </div>
       <div className={StudentRegistrationFormStyles.formContainer}>
@@ -245,7 +239,7 @@ const RegistrationForm = () => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your email!",
+                  message: "Please input your address!",
                 },
               ]}
             >
@@ -428,7 +422,7 @@ const RegistrationForm = () => {
                   name="examination"
                   className={StudentRegistrationFormStyles.formLabel}
                 >
-                  Select examination :
+                  Select the examination :
                 </label>
                 <Checkbox.Group
                   className={`${StudentRegistrationFormStyles.Special} ${StudentRegistrationFormStyles.SpecialAreaFix}`}
@@ -468,7 +462,7 @@ const RegistrationForm = () => {
               className={StudentRegistrationFormStyles.formLabel}
               style={{ marginBottom: "10px" }}
             >
-              Enter Parent / Guardian Details:
+              Enter Parents' / Guardian's Details:
             </label>
             <table
               style={{
@@ -714,7 +708,7 @@ const RegistrationForm = () => {
             <lable
               className={StudentRegistrationFormStyles.MobileParentDetailsTitle}
             >
-              Enter Parent / Guardian Details:
+              {"Enter Parents' / Guardian's Details:"}
             </lable>
             <br />
             <label
@@ -722,7 +716,7 @@ const RegistrationForm = () => {
                 StudentRegistrationFormStyles.MobileParentDetailsParentType
               }
             >
-              {"Details of Father's"}
+              {"Details of the father"}
             </label>
             <div className={StudentRegistrationFormStyles.formElement}>
               <lable className={StudentRegistrationFormStyles.formLabel}>
@@ -797,7 +791,7 @@ const RegistrationForm = () => {
                 StudentRegistrationFormStyles.MobileParentDetailsParentType
               }
             >
-              {"Details of Mother's"}
+              {"Details of the mother"}
             </label>
             <div className={StudentRegistrationFormStyles.formElement}>
               <lable className={StudentRegistrationFormStyles.formLabel}>
@@ -871,7 +865,7 @@ const RegistrationForm = () => {
                 StudentRegistrationFormStyles.MobileParentDetailsParentType
               }
             >
-              Details of Guardian
+              Details of the guardian
             </label>
 
             <div className={StudentRegistrationFormStyles.formElement}>

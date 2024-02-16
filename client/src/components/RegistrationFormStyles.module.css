@@ -1,19 +1,91 @@
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('../assets/Lato-Regular.ttf') format('woff2'),
+       
+}
+
 body {
   margin: 0;
   padding: 0;
   width: 100vw;
   overflow-x: hidden;
-  font-family: "Roboto", sans-serif;
+  font-family: 'MyCustomFont', sans-serif !important;
 }
 
+.ClassDetails {
+  line-height: 1em;
+}
+
+
 .PageTitle {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: left;
   font-size: 1.5em;
   letter-spacing: 1px;
-  font-weight: 600;
   color: #73d13d;
   padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #73d13d;
 }
+
+.PageTitle > div:nth-child(1) {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.ClassDetails {
+  line-height: 1em;
+}
+
+.ClassDetails > div:nth-child(1) {
+  color: black;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.ClassDetails > a:nth-child(2) {
+  font-size: 0.7em;
+  color: black;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.ClassDetails > a:nth-child(2):hover {
+  font-weight: 600;
+}
+
+.ClassDetails > a:nth-child(4) {
+  font-size: 0.7em;
+  text-decoration: none;
+  color: black;
+}
+
+.ClassDetails > a:nth-child(4):hover {
+  font-weight: 600;
+}
+
+.ClassDetails > a:nth-child(6) {
+  font-size: 0.7em;
+  text-decoration: none;
+  color: black;
+}
+
+.ClassDetails > a:nth-child(6):hover {
+  font-weight: 600;
+}
+
+
+.ClassDetails > a:nth-child(7) {
+  font-size: 0.7em;
+  text-decoration: none;
+  color: black;
+}
+
+
 
 .formContainer {
   width: 85%;
@@ -25,9 +97,9 @@ body {
 
 .formTitle {
   text-align: center;
-  font-size: 1.1em;
+  font-size: 1.2em;
   letter-spacing: 1px;
-  font-weight: 00;
+  font-weight: 500;
   color: #2c3e50;
   padding: 20px;
   background-color: #ebfaf2;
@@ -36,7 +108,7 @@ body {
 .StuForm {
   width: 100%;
   padding: 20px;
-  box-shadow: 5px 5px 10px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 8px 8px 15px -8px rgba(0, 0, 0, 0.1);
 }
 
 .formElement {
@@ -187,9 +259,25 @@ body {
 }
 
 @media (max-width: 922px) {
+
+.PageTitle {
+  border-bottom: none;
+}
+
+.ClassDetails {
+  line-height: 1em;
+}
+
+ .ClassDetails > div:nth-child(1) {
+  display: none;
+ }
+
   .PageTitle {
     text-align: center !important;
     font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   .formContainer {
     width: 95%;
@@ -274,5 +362,9 @@ body {
     gap: 5px;
     font-size: 1em;
     font-weight: 600;
+  }
+
+  .telNo {
+    font-size: 0.6em !important;
   }
 }
