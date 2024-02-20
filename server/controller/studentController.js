@@ -62,7 +62,19 @@ const studentDetailsController = async(req,res)=>{
    }
 }
 
-module.exports = {studentDetailsController};
+const getStudentDetailsController = async(req,res)=>{
+      const data = await studentRecordModel.find({});
+
+      res.status(200).send({
+        success:true, 
+        message:"Student Details Fetched successfully",
+        data
+      })
+}
+
+
+
+module.exports = {studentDetailsController,getStudentDetailsController};
 
 
 
