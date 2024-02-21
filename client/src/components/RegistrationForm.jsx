@@ -946,7 +946,7 @@ const RegistrationForm = () => {
               type="primary"
               htmlType="submit"
               ghost
-              onClick={showModal}
+              // onClick={showModal}
             >
               Submit
             </Button>
